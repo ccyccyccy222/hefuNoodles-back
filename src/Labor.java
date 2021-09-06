@@ -14,6 +14,23 @@ public class Labor {
     private int handSalary;
     private boolean toAccount;
 
+    public Labor(String laborId, String name, String position, String updateTime, int baseSalary, int overTimeAllowance, int mealAllowance, int socialSecurity, int otherAllowance, int timeOff, int otherOff, int totalSalary, int handSalary, boolean toAccount) {
+        this.laborId = laborId;
+        this.name = name;
+        this.position = position;
+        this.updateTime = updateTime;
+        this.baseSalary = baseSalary;
+        this.overTimeAllowance = overTimeAllowance;
+        this.mealAllowance = mealAllowance;
+        this.socialSecurity = socialSecurity;
+        this.otherAllowance = otherAllowance;
+        this.timeOff = timeOff;
+        this.otherOff = otherOff;
+        this.totalSalary = totalSalary;
+        this.handSalary = handSalary;
+        this.toAccount = toAccount;
+    }
+
     public String getLaborId() {
         return laborId;
     }

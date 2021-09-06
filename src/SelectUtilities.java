@@ -10,9 +10,8 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet(name = "SelectMaterial", urlPatterns = "/materialList")
-public class SelectMaterial extends HttpServlet {
-
+@WebServlet(name = "SelectUtilities", urlPatterns = "/utilitiesList")
+public class SelectUtilities extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
@@ -27,24 +26,29 @@ public class SelectMaterial extends HttpServlet {
         SqlHelper sqlHelper = new SqlHelper();
         ResultSet resultSet = null;
 
-        Material material[] = new Material[30];
+        Utilities utilities[] = new Utilities[80];
 
         int sum = 0;
 
         try {
-            String sql = "select * from material";
+            String sql = "select * from utilities";
             String[] paras = {};
             resultSet = sqlHelper.query(sql, paras);
 
             while (resultSet.next()) {
-                int id = resultSet.getInt(1);
-                String name = resultSet.getString(2);
-                String type = resultSet.getString(3);
-                String unit = resultSet.getString(4);
-                float remaining = resultSet.getFloat(5);
-                String date = resultSet.getString(6);
-
-                material[sum++]=new Material(id,name,type,unit,remaining,date);
+                int key=resultSet.getInt(1);
+                String date = resultSet.getString(2);
+                float waterUnit = resultSet.getFloat(3);
+                float waterVolume=resultSet.getFloat(4);
+                float waterAmount=resultSet.getFloat(5);
+                float electricUnit=resultSet.getFloat(6);
+                float electricVolume=resultSet.getFloat(7);
+                float electricAmount=resultSet.getFloat(8);
+                float gasUnit=resultSet.getFloat(9);
+                float gasVolume=resultSet.getFloat(10);
+                float gasAmount=resultSet.getFloat(11);
+                float totalAmount=resultSet.getFloat(12);
+                utilities[sum++]=new Utilities( key,  date,  waterUnit, waterVolume, waterAmount, electricUnit,  electricVolume,  electricAmount, gasUnit, gasVolume,  gasAmount, totalAmount);
             }
 
         } catch (SQLException throwables) {
@@ -54,15 +58,13 @@ public class SelectMaterial extends HttpServlet {
 
         Gson gson = new Gson();
         String json[] = new String[sum];
-        for (int i = 0; i < sum; i++) json[i] = gson.toJson(material[i]);
+        for (int i = 0; i < sum; i++) json[i] = gson.toJson(utilities[i]);
 
 //        out.println(Arrays.toString(json));
 
         String result = "[";
-        for (int i = 0; i < sum - 1; i++){
-            if(json[i]==null) break;
+        for (int i = 0; i < sum - 1; i++)
             result += json[i] + ",";
-        }
         result += json[sum - 1];
         result += "]";
 

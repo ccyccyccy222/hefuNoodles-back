@@ -12,6 +12,21 @@ public class Utilities {
     private float gasAmount;
     private float totalAmount;
 
+    public Utilities(int key, String date, float waterUnit, float waterVolume, float waterAmount, float electricUnit, float electricVolume, float electricAmount, float gasUnit, float gasVolume, float gasAmount, float totalAmount) {
+        this.key = key;
+        this.date = date;
+        this.waterUnit = waterUnit;
+        this.waterVolume = waterVolume;
+        this.waterAmount = waterAmount;
+        this.electricUnit = electricUnit;
+        this.electricVolume = electricVolume;
+        this.electricAmount = electricAmount;
+        this.gasUnit = gasUnit;
+        this.gasVolume = gasVolume;
+        this.gasAmount = gasAmount;
+        this.totalAmount = totalAmount;
+    }
+
     public int getKey() {
         return key;
     }

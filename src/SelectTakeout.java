@@ -54,15 +54,15 @@ public class SelectTakeout extends HttpServlet {
 
 
         Gson gson = new Gson();
-        String json[] = new String[takeout.length + 1];
-        for (int i = 0; i < takeout.length; i++) json[i] = gson.toJson(takeout[i]);
+        String json[] = new String[sum];
+        for (int i = 0; i < sum; i++) json[i] = gson.toJson(takeout[i]);
 
 //        out.println(Arrays.toString(json));
 
         String result = "[";
-        for (int i = 0; i < takeout.length - 1; i++)
+        for (int i = 0; i < sum - 1; i++)
             result += json[i] + ",";
-        result += json[takeout.length - 1];
+        result += json[sum - 1];
         result += "]";
 
         out.println(result);

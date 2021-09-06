@@ -74,15 +74,15 @@ public class SelectFood extends HttpServlet {
 
 
         Gson gson = new Gson();
-        String json[] = new String[food.length + 1];
-        for (int i = 0; i < food.length; i++) json[i] = gson.toJson(food[i]);
+        String json[] = new String[sum];
+        for (int i = 0; i < sum; i++) json[i] = gson.toJson(food[i]);
 
 //        out.println(Arrays.toString(json));
 
         String result = "[";
-        for (int i = 0; i < food.length - 1; i++)
+        for (int i = 0; i < sum - 1; i++)
             result += json[i] + ",";
-        result += json[food.length - 1];
+        result += json[sum - 1];
         result += "]";
 
         out.println(result);
