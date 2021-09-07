@@ -1,8 +1,15 @@
 public class User {
     private String username;
     private String password;
+    private String name;
     private String avaterurl;
-    private String authority;
+    private String access;
+
+    public User(String name, String avaterurl,String access) {
+        this.name = name;
+        this.avaterurl = avaterurl;
+        this.access=access;
+    }
 
     public String getUsername() {
         return username;
@@ -20,6 +27,14 @@ public class User {
         this.password = password;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getAvaterurl() {
         return avaterurl;
     }
@@ -28,11 +43,11 @@ public class User {
         this.avaterurl = avaterurl;
     }
 
-    public String getAuthority() {
-        return authority;
+    public String getaccess() {
+        return access;
     }
 
-    public void setAuthority(String authority) {
-        this.authority = authority;
+    public void setaccess(String access) {
+        this.access = access;
     }
 }

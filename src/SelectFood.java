@@ -14,27 +14,6 @@ import java.util.Arrays;
 @WebServlet(name = "SelectFood", urlPatterns = "/food")
 public class SelectFood extends HttpServlet {
 
-//    SqlHelper sp = null;
-//    ResultSet rs = null;
-
-//    public void search() {
-//        String sql = "select id,name,price,imgurl from food";
-//        String paras[] = {};
-//
-//        sp = new SqlHelper();
-//        rs = sp.query(sql, paras);
-//        try {
-//            if (rs.next()) {
-//
-//            }
-//        } catch (
-//                SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            sp.close();
-//        }
-//    }
-
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         response.setCharacterEncoding("UTF-8");
@@ -72,6 +51,8 @@ public class SelectFood extends HttpServlet {
             throwables.printStackTrace();
         }
 
+
+        sqlHelper.close();
 
         Gson gson = new Gson();
         String json[] = new String[sum];
