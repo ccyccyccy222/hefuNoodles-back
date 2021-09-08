@@ -39,7 +39,7 @@ public class SelectFood extends HttpServlet {
             while (resultSet.next()) {
                 String id = resultSet.getString(1);
                 String name = resultSet.getString(2);
-                System.out.println("name:"+name);
+//                System.out.println("name:"+name);
                 float price = resultSet.getFloat(3);
                 String imgurl = resultSet.getString(4);
                 String bill = resultSet.getString(5);

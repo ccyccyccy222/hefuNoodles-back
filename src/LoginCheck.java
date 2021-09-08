@@ -34,10 +34,7 @@ public class LoginCheck extends HttpServlet {
         String line = br.readLine();
         System.out.println("line:" + line);
 
-
-        System.out.println("before json");
         JSONObject json = JSONObject.parseObject(line);
-        System.out.println("after json");
         System.out.println("json:" + json);
 
         String username=json.getString("username");

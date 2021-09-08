@@ -1,13 +1,13 @@
 public class Material {
-    private int id;
+    private int key;
     private String name;
     private String type;
     private String unit;
     private String date;
     private float remaining;
 
-    public Material(int id, String name, String type, String unit, float remaining,String date ) {
-        this.id = id;
+    public Material(int key, String name, String type, String unit, float remaining,String date ) {
+        this.key = key;
         this.name = name;
         this.type = type;
         this.unit = unit;
@@ -15,12 +15,12 @@ public class Material {
         this.remaining = remaining;
     }
 
-    public int getId() {
-        return id;
+    public int getkey() {
+        return key;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setkey(int key) {
+        this.key = key;
     }
 
     public String getName() {

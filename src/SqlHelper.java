@@ -49,10 +49,26 @@ public class SqlHelper {
         return rs;
     }
 
-//    public ResultSet select(String str, String u) throws SQLException {
-//        String sql = "select " + str + " from std_management";
-//        return statement.executeQuery(sql);
-//    }
+    //把增删改查合在一起
+    public boolean updExecute(String sql, String[] paras){
+        boolean b=true;
+        try {
+            ps = ct.prepareStatement(sql);
+            //对sql的参数赋值
+            for (int i = 0; i < paras.length; i++) {
+                //i+1为问号的编号，paras[i]为传入的参数
+                ps.setString(i + 1, paras[i]);
+            }
+            if(ps.executeUpdate()!=1){
+                b= false;
+            }
+        } catch (SQLException e) {
+            b=false;
+            e.printStackTrace();
+        }
+        return b;
+    }
+
 
     //关闭资源的方法
     public void close() {

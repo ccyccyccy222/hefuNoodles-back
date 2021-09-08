@@ -11,6 +11,9 @@ public class User {
         this.access=access;
     }
 
+    public User() {
+    }
+
     public String getUsername() {
         return username;
     }
