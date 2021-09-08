@@ -1,22 +1,26 @@
+import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 
-@WebServlet(name="LoginCheck",urlPatterns = "/login/account")
-public class LoginCheck extends HttpServlet{
 
-    public static String user="";
+@WebServlet(name = "LoginCheck", urlPatterns = "/login/account")
+public class LoginCheck extends HttpServlet {
 
-    public void doPost(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
+    static String user = "";
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         response.addHeader("Access-Control-Allow-Origin", "*");
@@ -24,11 +28,26 @@ public class LoginCheck extends HttpServlet{
 
         PrintWriter out = response.getWriter();
 
+        BufferedReader br;
 
-        String username=request.getParameter("username");
-        String password=request.getParameter("password");
+        br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+        String line = br.readLine();
+        System.out.println("line:" + line);
 
-        ResClass resClass = null;
+
+        System.out.println("before json");
+        JSONObject json = JSONObject.parseObject(line);
+        System.out.println("after json");
+        System.out.println("json:" + json);
+
+        String username=json.getString("username");
+        String password=json.getString("password");
+//
+//        System.out.println("username："+username);
+//        System.out.println("password："+password);
+//
+//
+        ResAccount resAccount = null;
 
         //查询数据库
         SqlHelper sqlHelper = new SqlHelper();
@@ -47,17 +66,17 @@ public class LoginCheck extends HttpServlet{
                 if(usernameSQL.equals(username)&&passwordSQL.equals(password)){
                     //设置全局用户名
                     user=usernameSQL;
-                    System.out.println("username"+username+"is online");
+                    System.out.println("username "+username+" is online");
                     check=true;
                     String authority = resultSet.getString(3);
-                    resClass=new ResClass("ok",authority);
+                    resAccount=new ResAccount("ok",authority,true);
                     break;
                 }
             }
 
             if(!check){
                 //表示数据库没有此人
-                resClass=new ResClass("error","guest");
+                resAccount=new ResAccount("error","guest",true);
             }
 
         } catch (SQLException throwables) {
@@ -67,38 +86,21 @@ public class LoginCheck extends HttpServlet{
         sqlHelper.close();
 
         Gson gson = new Gson();
-        out.println(gson.toJson(resClass));
+        out.println(gson.toJson(resAccount));
     }
 }
 
-
-class ResClass{
-    String state;
+class ResAccount{
+    String status;
     String currentAuthority;
-
-    String errorCode;
-    String errorMessage;
     boolean success;
-
-    User user;
 
 
     ///login/account返回
-    public ResClass(String state, String currentAuthority) {
-        this.state = state;
+    public ResAccount(String status, String currentAuthority,boolean success) {
+        this.status = status;
         this.currentAuthority = currentAuthority;
-    }
-
-    // /currentUser返回
-    public ResClass(String errorCode, String errorMessage,boolean success) {
-        this.errorCode = errorCode;
-        this.errorMessage = errorMessage;
-        this.success =success;
-    }
-
-    public ResClass(User user,boolean success) {
-        this.user=user;
-        this.success =success;
+        this.success=success;
     }
 }
 

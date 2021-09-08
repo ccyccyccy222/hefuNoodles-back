@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 
 @WebServlet(name="GetUser",urlPatterns = "/currentUser")
 public class GetUser extends HttpServlet{
@@ -57,5 +56,29 @@ public class GetUser extends HttpServlet{
         out.println(gson.toJson(resClass));
     }
 }
+
+class ResClass {
+
+
+    String errorCode;
+    String errorMessage;
+    boolean success;
+
+    User data;
+
+
+    // /currentUser返回
+    public ResClass(String errorCode, String errorMessage, boolean success) {
+        this.errorCode = errorCode;
+        this.errorMessage = errorMessage;
+        this.success = success;
+    }
+
+    public ResClass(User data, boolean success) {
+        this.data = data;
+        this.success = success;
+    }
+}
+
 
 

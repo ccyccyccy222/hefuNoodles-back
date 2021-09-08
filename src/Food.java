@@ -2,14 +2,14 @@ public class Food {
     private String id;
     private String name;
     private float price;
-    private String imgurl;
+    private String imgUrl;
     private String bill;
 
-    public Food(String id, String name, float price, String imgurl, String bill) {
+    public Food(String id, String name, float price, String imgUrl, String bill) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.imgurl = imgurl;
+        this.imgUrl = imgUrl;
         this.bill = bill;
     }
 
@@ -37,12 +37,12 @@ public class Food {
         this.price = price;
     }
 
-    public String getImgurl() {
-        return imgurl;
+    public String getimgUrl() {
+        return imgUrl;
     }
 
-    public void setImgurl(String imgurl) {
-        this.imgurl = imgurl;
+    public void setimgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public String getBill() {

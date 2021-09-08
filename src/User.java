@@ -2,12 +2,12 @@ public class User {
     private String username;
     private String password;
     private String name;
-    private String avaterurl;
+    private String avatar;
     private String access;
 
-    public User(String name, String avaterurl,String access) {
+    public User(String name, String avatar,String access) {
         this.name = name;
-        this.avaterurl = avaterurl;
+        this.avatar = avatar;
         this.access=access;
     }
 
@@ -35,12 +35,12 @@ public class User {
         this.name = name;
     }
 
-    public String getAvaterurl() {
-        return avaterurl;
+    public String getavatar() {
+        return avatar;
     }
 
-    public void setAvaterurl(String avaterurl) {
-        this.avaterurl = avaterurl;
+    public void setavatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getaccess() {

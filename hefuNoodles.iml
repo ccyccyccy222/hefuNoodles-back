@@ -23,5 +23,6 @@
     <orderEntry type="library" name="mysql-connector-java-8.0.16" level="project" />
     <orderEntry type="library" name="gson-2.8.6" level="project" />
     <orderEntry type="library" name="servlet-api" level="project" />
+    <orderEntry type="library" name="fastjson-1.2.75" level="project" />
   </component>
 </module>
