@@ -1,4 +1,5 @@
 public class Labor {
+    private int key;
     private String laborId;
     private String name;
     private String position;
@@ -14,7 +15,8 @@ public class Labor {
     private int handSalary;
     private boolean toAccount;
 
-    public Labor(String laborId, String name, String position, String updateTime, int baseSalary, int overTimeAllowance, int mealAllowance, int socialSecurity, int otherAllowance, int timeOff, int otherOff, int totalSalary, int handSalary, boolean toAccount) {
+    public Labor(int key,String laborId, String name, String position, String updateTime, int baseSalary, int overTimeAllowance, int mealAllowance, int socialSecurity, int otherAllowance, int timeOff, int otherOff, int totalSalary, int handSalary, boolean toAccount) {
+        this.key=key;
         this.laborId = laborId;
         this.name = name;
         this.position = position;
@@ -29,6 +31,14 @@ public class Labor {
         this.totalSalary = totalSalary;
         this.handSalary = handSalary;
         this.toAccount = toAccount;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public void setKey(int key) {
+        this.key = key;
     }
 
     public String getLaborId() {

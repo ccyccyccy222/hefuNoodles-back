@@ -51,7 +51,7 @@ public class SelectLaborList extends HttpServlet {
                 boolean toAccount = resultSet.getInt(13) == 1;
                 String updateTime = resultSet.getString(14);
 
-                labor[sum++]=new Labor( laborId,  name,  position,  updateTime, baseSalary,  overTimeAllowance, mealAllowance, socialSecurity, otherAllowance, timeOff,otherOff,totalSalary,handSalary,toAccount);
+                labor[sum++]=new Labor( Integer.parseInt(laborId),laborId,  name,  position,  updateTime, baseSalary,  overTimeAllowance, mealAllowance, socialSecurity, otherAllowance, timeOff,otherOff,totalSalary,handSalary,toAccount);
             }
 
         } catch (SQLException throwables) {
