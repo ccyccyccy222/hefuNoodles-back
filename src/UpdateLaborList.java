@@ -66,7 +66,7 @@ public class UpdateLaborList extends HttpServlet{
             resultSet = sqlHelper.query(sql, paras);
 
             String updateSql = null;
-            String[] paras2=new String[5];
+            String[] paras2=new String[14];
 
             //若有记录，则更新
             while (resultSet.next()) {

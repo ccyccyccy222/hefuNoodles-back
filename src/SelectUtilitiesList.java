@@ -10,15 +10,15 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet(name = "SelectUtilities", urlPatterns = "/utilitiesList")
-public class SelectUtilities extends HttpServlet {
+@WebServlet(name = "SelectUtilitiesList", urlPatterns = "/utilitiesList")
+public class SelectUtilitiesList extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         response.addHeader("Access-Control-Allow-Origin", "*");
-        System.out.println("新的请求: " + request.getRemoteAddr());
+        System.out.println("新的请求: " + request.getRemoteAddr()+" /utilitiesList");
 
         PrintWriter out = response.getWriter();
 
@@ -26,7 +26,7 @@ public class SelectUtilities extends HttpServlet {
         SqlHelper sqlHelper = new SqlHelper();
         ResultSet resultSet = null;
 
-        Utilities utilities[] = new Utilities[80];
+        Utilities utilities[] = new Utilities[300];
 
         int sum = 0;
 
@@ -38,7 +38,7 @@ public class SelectUtilities extends HttpServlet {
             while (resultSet.next()) {
                 int key=resultSet.getInt(1);
                 String date = resultSet.getString(2);
-                float waterUnit = resultSet.getFloat(3);
+                float waterUnit=resultSet.getFloat(3);
                 float waterVolume=resultSet.getFloat(4);
                 float waterAmount=resultSet.getFloat(5);
                 float electricUnit=resultSet.getFloat(6);
@@ -48,7 +48,11 @@ public class SelectUtilities extends HttpServlet {
                 float gasVolume=resultSet.getFloat(10);
                 float gasAmount=resultSet.getFloat(11);
                 float totalAmount=resultSet.getFloat(12);
-                utilities[sum++]=new Utilities( key,  date,  waterUnit, waterVolume, waterAmount, electricUnit,  electricVolume,  electricAmount, gasUnit, gasVolume,  gasAmount, totalAmount);
+
+                utilities[sum++]=new Utilities(key,date,
+                        waterUnit,waterVolume,waterAmount,
+                        electricUnit,electricVolume,electricAmount,
+                        gasUnit,gasVolume,gasAmount,totalAmount);
             }
 
         } catch (SQLException throwables) {

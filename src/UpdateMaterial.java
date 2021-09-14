@@ -23,7 +23,7 @@ public class UpdateMaterial extends HttpServlet{
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         response.addHeader("Access-Control-Allow-Origin", "*");
-        System.out.println("新的请求: " + request.getRemoteAddr());
+        System.out.println("新的请求: " + request.getRemoteAddr()+" /updateMaterialList");
 
         PrintWriter out = response.getWriter();
 
