@@ -55,8 +55,8 @@ public class UpdateFoodList extends HttpServlet {
                 break;
             case 1:
                 //修改
-                updateSql = "update food set name=?,price=? where id=?";
-                paras2 = new String[]{name, String.valueOf(price), id};
+                updateSql = "update food set name=?,price=?,imgurl=? where id=?";
+                paras2 = new String[]{name, String.valueOf(price), UploadServlet.uploadImage, id};
         }
 
         sqlHelper.updExecute(updateSql, paras2);
