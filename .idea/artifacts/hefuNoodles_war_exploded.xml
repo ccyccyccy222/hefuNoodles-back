@@ -11,6 +11,7 @@
           <element id="library" level="project" name="fastjson-1.2.75" />
           <element id="library" level="project" name="commons-fileupload-1.4" />
           <element id="library" level="project" name="commons-io-2.11.0" />
+          <element id="library" level="project" name="commons-codec-1.15" />
         </element>
       </element>
     </root>

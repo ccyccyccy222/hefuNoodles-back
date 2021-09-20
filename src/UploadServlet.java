@@ -10,7 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.*;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -19,6 +25,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 @WebServlet(name = "UploadServlet", urlPatterns = "/upload")
 public class UploadServlet extends HttpServlet {
+
+    static  String uploadImage="";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         System.out.println(request.getParameter("getfile"));
@@ -54,10 +62,59 @@ public class UploadServlet extends HttpServlet {
                 //判断是否为普通表单域
                 if(!item.isFormField()){
                     //it is a file upload
-                    String fileUploadPath = "C:\\Users\\ccy\\Pictures\\数据库课设图片\\foodMenu\\image";
+                    String fileUploadPath = "C:\\Users\\ccy\\Pictures\\数据库课设图片\\foodMenu\\upload";
+//                    String fileUploadPath = "http://localhost:8087";
                     File file=new File(fileUploadPath,item.getName());
 //                 //write方法将FileItem对象中的内容保存到某个指定的文件中。
                     item.write(file);
+                    uploadImage="http://localhost:8087/"+item.getName();
+                    System.out.println("uploadImage:"+uploadImage);
+
+                    //修改访问权限
+                    Path path= Paths.get(file.getPath());
+                    AclFileAttributeView aclView= Files.getFileAttributeView(path,AclFileAttributeView.class);
+                    if (aclView == null) {
+                        System.out.format("ACL view  is not  supported.%n");
+                        return;
+                    }
+                    try {
+                        UserPrincipalLookupService lookupService = FileSystems.getDefault().getUserPrincipalLookupService();
+
+                        GroupPrincipal group = lookupService.lookupPrincipalByGroupName("Everyone");
+
+                        AclEntry.Builder builder = AclEntry.newBuilder();
+                        builder.setPrincipal(group);
+                        builder.setType(AclEntryType.ALLOW);
+
+                        //搜索之前所有用户权限
+                        List<AclEntry> aclEntries = aclView.getAcl();
+                        Set<AclEntryPermission> permissions = aclEntries.get(0).permissions();
+
+                        builder.setPermissions(permissions);
+                        AclEntry newEntry = builder.build();
+
+                        //把新的用户权限加入列表
+                        aclEntries.add(newEntry);
+
+                        aclView.setAcl(aclEntries);
+
+                        System.out.println("用户权限列表：");
+                        for (AclEntry entry : aclEntries) {
+                            System.out.format("Principal: %s%n", entry.principal());
+                            System.out.format("Type: %s%n", entry.type());
+                            System.out.format("Permissions are:%n");
+
+                            permissions = entry.permissions();
+                            for (AclEntryPermission p : permissions) {
+                                System.out.format("%s %n", p);
+                            }
+                        }
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
                     JSONObject jsono=new JSONObject();
                     jsono.put("name",item.getName());
                     jsono.put("size",item.getSize());

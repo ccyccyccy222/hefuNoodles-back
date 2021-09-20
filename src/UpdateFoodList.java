@@ -38,6 +38,7 @@ public class UpdateFoodList extends HttpServlet {
         String id = json.getString("currentID");
         String name = json.getString("name");
         float price = json.getFloat("price");
+        String imageUrl = json.getString("imageUrl");
 
 
         //查询数据库
@@ -49,8 +50,8 @@ public class UpdateFoodList extends HttpServlet {
         switch (requestType){
             case 0:
                 //添加
-                updateSql = "insert into food (id,name,price) values(?,?,?)";
-                paras2 = new String[]{id,name, String.valueOf(price)};
+                updateSql = "insert into food (id,name,price,imgurl) values(?,?,?,?)";
+                paras2 = new String[]{id,name, String.valueOf(price), UploadServlet.uploadImage};
                 break;
             case 1:
                 //修改
