@@ -6,7 +6,7 @@
 
 1. **下载代码**
 
-   [Github  antDesignProLearning-front]: https://github.com/ccyccyccy222/antDesignProLearning-front
+   [antDesignProLearning-front](https://github.com/ccyccyccy222/antDesignProLearning-front)
 
 2. **安装依赖，在命令行输入命令```npm install```或```yarn```**
 
@@ -26,10 +26,12 @@
 
    + 其他，参考官方文档
 
-     [Ant Design Pro官方文档]: https://pro.ant.design/zh-CN/docs/overview
-     [UmiJS官方文档]: https://umijs.org/zh-CN/docs/getting-started
-     [b站良心教程：React项目全程实录#电商项目#react+UmiJS+Antd Pro#React全套技术#融职教育出品]: https://www.bilibili.com/video/BV1i5411c7xp?p=1
-
+     [Ant Design Pro官方文档](https://pro.ant.design/zh-CN/docs/overview)
+     
+     [UmiJS官方文档](https://umijs.org/zh-CN/docs/getting-started)
+     
+     [b站良心教程：React项目全程实录#电商项目#react+UmiJS+Antd Pro#React全套技术#融职教育出品](https://www.bilibili.com/video/BV1i5411c7xp?p=1
+) 
 4. **输入启动命令**
 
    - 使用mock
@@ -46,7 +48,7 @@
 
 1. **下载代码**
 
-   [Github  hefuNoodles-back]: https://github.com/ccyccyccy222/hefuNoodles-back
+   [hefuNoodles-back](https://github.com/ccyccyccy222/hefuNoodles-back)
 
 2. **按需要修改部分代码**
 
