@@ -24,7 +24,7 @@
 
      我的项目接口地址默认是```localhost:8080/api/```
 
-   + 其他，参考官方文档
+   + 其他，参考官方文档及教程
 
      [Ant Design Pro官方文档](https://pro.ant.design/zh-CN/docs/overview)
      
@@ -119,6 +119,7 @@
 ![image-20210928091803425](https://i.loli.net/2021/09/28/M5VKnxUGwlfFC9e.png) 
 
 其他角色同理
+
 ![image-20210928091811757](https://i.loli.net/2021/09/28/KgP8niNcXHkWx3l.png) 
 ![image-20210928091820212](https://i.loli.net/2021/09/28/aFADMEqVTrUHSzi.png)
 
