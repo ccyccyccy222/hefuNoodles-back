@@ -17,6 +17,7 @@ import java.util.Date;
 @WebServlet(name = "UpdateFoodList", urlPatterns = "/updateFoodList")
 public class UpdateFoodList extends HttpServlet {
 
+    //处理put请求
     public void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
@@ -25,15 +26,18 @@ public class UpdateFoodList extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        //读取json格式的字符串
         BufferedReader br;
 
         br = new BufferedReader(new InputStreamReader(request.getInputStream(), "UTF-8"));
         String line = br.readLine();
         System.out.println("line:" + line);
 
+        //将其转换为json对象
         JSONObject json = JSONObject.parseObject(line);
         System.out.println("json:" + json);
 
+        //依次提取出json中的key对应的value值
         int requestType=json.getIntValue("type");
         String id = json.getString("currentID");
         String name = json.getString("name");
@@ -47,6 +51,7 @@ public class UpdateFoodList extends HttpServlet {
         String updateSql=null;
         String[] paras2=new String[5];
 
+        //根据不同的type，进行不同的操作
         switch (requestType){
             case 0:
                 //添加
@@ -63,6 +68,7 @@ public class UpdateFoodList extends HttpServlet {
 
         sqlHelper.close();
 
+        //返回执行操作的类型
         out.println("{\"requestType\":" + requestType + "}");
 
     }

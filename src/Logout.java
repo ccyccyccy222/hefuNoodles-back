@@ -25,6 +25,8 @@ public class Logout extends HttpServlet{
 
         PrintWriter out = response.getWriter();
 
+//        UploadServlet.uploadImage="";
+
         User data=new User();
         //ResClass在getUser里面
         ResClass resClass=new ResClass(data,true);
